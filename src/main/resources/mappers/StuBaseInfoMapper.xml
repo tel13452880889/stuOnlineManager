@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hq.student.stuManager.domain.mapper.StuBaseInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.hq.student.stuManager.domain.StuBaseInfo" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="sex" property="sex" jdbcType="INTEGER" />
+    <result column="age" property="age" jdbcType="INTEGER" />
+    <result column="householdRegister" property="householdregister" jdbcType="VARCHAR" />
+    <result column="reportTime" property="reporttime" jdbcType="INTEGER" />
+    <result column="level" property="level" jdbcType="INTEGER" />
+    <result column="majorId" property="majorid" jdbcType="INTEGER" />
+    <result column="stuId" property="stuid" jdbcType="VARCHAR" />
+    <result column="statu" property="statu" jdbcType="INTEGER" />
+    <result column="majorName" property="majorname" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, name, sex, age, householdRegister, reportTime, level, majorId, stuId
+  </sql>
+
+  <sql id="Base_Column_List_1" >
+    a.id, a.name, a.sex, a.age, a.householdRegister, a.reportTime, a.level, a.majorId, a.stuId,a.statu,m.name AS majorName
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_stu_baseinfo
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_stu_baseinfo
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hq.student.stuManager.domain.StuBaseInfo" >
+    insert into t_stu_baseinfo (id, name, sex, 
+      age, householdRegister, reportTime, 
+      level, majorId, stuId
+      )
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{sex,jdbcType=INTEGER}, 
+      #{age,jdbcType=INTEGER}, #{householdregister,jdbcType=VARCHAR}, #{reporttime,jdbcType=INTEGER}, 
+      #{level,jdbcType=INTEGER}, #{majorid,jdbcType=INTEGER}, #{stuid,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.hq.student.stuManager.domain.StuBaseInfo" >
+    insert into t_stu_baseinfo
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="sex != null" >
+        sex,
+      </if>
+      <if test="age != null" >
+        age,
+      </if>
+      <if test="householdregister != null" >
+        householdRegister,
+      </if>
+      <if test="reporttime != null" >
+        reportTime,
+      </if>
+      <if test="level != null" >
+        level,
+      </if>
+      <if test="majorid != null" >
+        majorId,
+      </if>
+      <if test="stuid != null" >
+        stuId,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=INTEGER},
+      </if>
+      <if test="age != null" >
+        #{age,jdbcType=INTEGER},
+      </if>
+      <if test="householdregister != null" >
+        #{householdregister,jdbcType=VARCHAR},
+      </if>
+      <if test="reporttime != null" >
+        #{reporttime,jdbcType=INTEGER},
+      </if>
+      <if test="level != null" >
+        #{level,jdbcType=INTEGER},
+      </if>
+      <if test="majorid != null" >
+        #{majorid,jdbcType=INTEGER},
+      </if>
+      <if test="stuid != null" >
+        #{stuid,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hq.student.stuManager.domain.StuBaseInfo" >
+    update t_stu_baseinfo
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        sex = #{sex,jdbcType=INTEGER},
+      </if>
+      <if test="age != null" >
+        age = #{age,jdbcType=INTEGER},
+      </if>
+      <if test="householdregister != null" >
+        householdRegister = #{householdregister,jdbcType=VARCHAR},
+      </if>
+      <if test="reporttime != null" >
+        reportTime = #{reporttime,jdbcType=INTEGER},
+      </if>
+      <if test="level != null" >
+        level = #{level,jdbcType=INTEGER},
+      </if>
+      <if test="majorid != null" >
+        majorId = #{majorid,jdbcType=INTEGER},
+      </if>
+      <if test="stuid != null" >
+        stuId = #{stuid,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hq.student.stuManager.domain.StuBaseInfo" >
+    update t_stu_baseinfo
+    set name = #{name,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=INTEGER},
+      age = #{age,jdbcType=INTEGER},
+      householdRegister = #{householdregister,jdbcType=VARCHAR},
+      reportTime = #{reporttime,jdbcType=INTEGER},
+      level = #{level,jdbcType=INTEGER},
+      majorId = #{majorid,jdbcType=INTEGER},
+      stuId = #{stuid,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+
+  <select id="selectAllData" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List_1" />
+    FROM t_stu_baseinfo a,t_major_info m
+    WHERE a.majorId = m.id
+  </select>
+
+</mapper>

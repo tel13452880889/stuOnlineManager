@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.springframework.org/schema/data/jaxb">
+    <head>
+        <script type="text/javascript" th:src="@{https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js}"></script>
+        <link th:href="@{https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css}" rel="stylesheet"/>
+        <link th:href="@{/css/default.css}" rel="stylesheet"/>
+        <link rel="icon" th:href="@{/images/favicon.ico}" type="image/x-icon"/>
+        <meta charset="UTF-8"/>
+        <title>WebSiteInfo 新建/管理</title>
+    </head>
+
+    <body>
+        <div class="contentDiv">
+
+            <h5> 新建/管理</h5>
+
+            <legend>
+                <strong>信息填写</strong>
+            </legend>
+
+            <form th:action="@{/webSiteInfos/{action}(action=${action})}" method="post" class="form-horizontal">
+
+                <input type="hidden" name="id" th:value="${webSiteInfo.id}"/>
+
+                <div class="form-group">
+                    <label for="site_name" class="col-sm-2 control-label">站点名称</label>
+                    <div class="col-xs-4">
+                        <input type="text" class="form-control" id="site_name" name="site_name" th:value="${webSiteInfo.site_name}" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="url" class="col-sm-2 control-label">抓取地址:</label>
+                    <div class="col-xs-4">
+                        <input type="text" class="form-control" id="url" name="url" th:value="${webSiteInfo.url}"/>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="create_time" class="col-sm-2 control-label">创建时间:</label>
+                    <div class="col-xs-4">
+                        <input type="date" class="form-control" id="create_time" name="create_time" th:value="${webSiteInfo.create_time}"/>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <input class="btn btn-primary" type="submit" value="提交"/>&nbsp;&nbsp;
+                        <input class="btn" type="button" value="返回" onclick="history.back()"/>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </body>
+</html>

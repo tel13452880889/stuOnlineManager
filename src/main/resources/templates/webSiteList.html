@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.springframework.org/schema/data/jaxb">
+    <head>
+        <script type="text/javascript" th:src="@{https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js}"></script>
+        <link th:href="@{https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css}" rel="stylesheet"/>
+        <link th:href="@{/css/default.css}" rel="stylesheet"/>
+        <link rel="icon" th:href="@{/images/favicon.ico}" type="image/x-icon"/>
+        <meta charset="UTF-8"/>
+        <title>WebSiteInfo 抓取列表</title>
+    </head>
+
+    <body>
+
+        <div class="contentDiv">
+
+            <h5>WebSiteInfo 新建/管理</h5>
+
+            <table class="table table-hover table-condensed">
+                <legend>
+                    <strong>站点列表</strong>
+                </legend>
+                <thead>
+                    <tr>
+                        <th>序号</th>
+                        <th>站点名称</th>
+                        <th>抓取地址</th>
+                        <th>创建时间</th>
+                        <th>管理</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="webSite : ${webSiteList}">
+                        <th scope="row" th:text="${webSite.id}"></th>
+                        <td><a th:href="@{/webSiteInfos/update/{id}(id=${webSite.id})}" th:text="${webSite.site_name}"></a></td>
+                        <td th:text="${webSite.url}"></td>
+                        <td th:text="${webSite.create_time}"></td>
+                        <td><a class="btn btn-danger" th:href="@{/webSiteInfos/delete/{id}(id=${webSite.id})}">删除</a>&nbsp;&nbsp;<a class="btn btn-danger" th:href="@{/crawlControll/crawlOnce/{id}(id=${webSite.id})}">爬一下</a></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div><a class="btn btn-primary" href="/webSiteInfos/create" role="button">创建</a></div>
+        </div>
+
+    </body>
+</html>
