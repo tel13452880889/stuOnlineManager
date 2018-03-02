@@ -27,7 +27,7 @@ public class CrawlManagerControll {
     @RequestMapping(value="/get")
     public String index() {
         /*myCrawler.crawling(new String[]{"http://www.cq.gov.cn/publicinfo/web/views/Show!index.action?orgSid=99"});*/
-        return "Hello World";
+        return "Hello World1111";
     }
 
     @RequestMapping(value = "/crawlOnce/{id}", method = RequestMethod.GET)
